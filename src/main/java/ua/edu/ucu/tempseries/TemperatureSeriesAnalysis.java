@@ -41,8 +41,8 @@ public class TemperatureSeriesAnalysis {
         // Checks if temp is >= -273C
         for (double temp: arr) {
             if (temp < ABSOLUTE_ZERO) {
-                throw new InputMismatchException("Can't" +
-                        " be lower than absolute zero");
+                throw new InputMismatchException("Can't"
+                        + " be lower than absolute zero");
             }
         }
     }
@@ -109,8 +109,8 @@ public class TemperatureSeriesAnalysis {
             if (Math.abs(currDiff) < minDifference) {
                 minDifference = currDiff;
                 closest = temp;
-            } else if (Math.abs(currDiff) ==
-                    minDifference && currDiff > minDifference) {
+            } else if (Math.abs(currDiff)
+                    == minDifference && currDiff > minDifference) {
                 minDifference = currDiff;
                 closest = temp;
             }
