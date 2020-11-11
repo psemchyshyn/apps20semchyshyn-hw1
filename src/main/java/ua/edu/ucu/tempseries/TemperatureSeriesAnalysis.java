@@ -5,8 +5,8 @@ import java.util.InputMismatchException;
 
 
 public class TemperatureSeriesAnalysis {
-    private static int ABSOLUTE_ZERO = -273;
-    private static int DEFAULT_SIZE = 10;
+    private final static int ABSOLUTE_ZERO = -273;
+    private final static int DEFAULT_SIZE = 10;
     private double[] tempList;
     private int currSize = 0;
 
@@ -15,12 +15,12 @@ public class TemperatureSeriesAnalysis {
     }
 
     public TemperatureSeriesAnalysis(double[] temperatureSeries) {
-        if (temperatureSeries.length == 0){
+        if (temperatureSeries.length == 0) {
             setDefaultTempList();
         } else {
             checkIfAbsoluteZeroReached(temperatureSeries);
             tempList = new double[temperatureSeries.length];
-            for (int i = 0; i < temperatureSeries.length; i++){
+            for (int i = 0; i < temperatureSeries.length; i++) {
                 tempList[i] = temperatureSeries[i];
                 currSize = i + 1;
             }
@@ -31,16 +31,16 @@ public class TemperatureSeriesAnalysis {
         tempList = new double[DEFAULT_SIZE];
     }
 
-    public void checkIfEmpty(){
-        if (currSize == 0){
+    public void checkIfEmpty() {
+        if (currSize == 0) {
             throw new IllegalArgumentException("Temp list is empty");
         }
     }
 
-    public void checkIfAbsoluteZeroReached(double arr[]){
+    public void checkIfAbsoluteZeroReached(double[] arr){
         // Checks if temp is >= -273C
-        for (double temp: arr){
-            if (temp < ABSOLUTE_ZERO){
+        for (double temp: arr) {
+            if (temp < ABSOLUTE_ZERO) {
                 throw new InputMismatchException("Can't be lower than absolute zero");
             }
         }
@@ -66,7 +66,7 @@ public class TemperatureSeriesAnalysis {
     public double deviation() {
         double average = average();
         double standDev = 0;
-        for (int i = 0; i < currSize; i++){
+        for (int i = 0; i < currSize; i++) {
             standDev += Math.pow(tempList[i] - average, 2);
         }
         return Math.sqrt(standDev / currSize);
@@ -75,8 +75,8 @@ public class TemperatureSeriesAnalysis {
     public double min() {
         checkIfEmpty();
         double min = Double.POSITIVE_INFINITY;
-        for (int i = 0; i < currSize; i++){
-            if (tempList[i] < min){
+        for (int i = 0; i < currSize; i++) {
+            if (tempList[i] < min) {
                 min = tempList[i];
             }
         }
@@ -86,8 +86,8 @@ public class TemperatureSeriesAnalysis {
     public double max() {
         checkIfEmpty();
         double max = Double.NEGATIVE_INFINITY;
-        for (int i = 0; i < currSize; i++){
-            if (tempList[i] > max){
+        for (int i = 0; i < currSize; i++) {
+            if (tempList[i] > max) {
                 max = tempList[i];
             }
         }
@@ -102,13 +102,13 @@ public class TemperatureSeriesAnalysis {
         checkIfEmpty();
         double minDifference = Double.POSITIVE_INFINITY;
         double temp, currDiff = 0, closest = 0;
-        for (int i = 0; i < currSize; i++){
+        for (int i = 0; i < currSize; i++) {
             temp = tempList[i];
             currDiff = temp - tempValue;
-            if (Math.abs(currDiff) < minDifference){
+            if (Math.abs(currDiff) < minDifference) {
                 minDifference = currDiff;
                 closest = temp;
-            } else if (Math.abs(currDiff) == minDifference && currDiff > minDifference){
+            } else if (Math.abs(currDiff) == minDifference && currDiff > minDifference) {
                 minDifference = currDiff;
                 closest = temp;
             }
@@ -116,10 +116,10 @@ public class TemperatureSeriesAnalysis {
         return closest;
     }
 
-    public int amountOflessThen(double tempValue){
+    public int amountOflessThen(double tempValue) {
         int amountOfLess = 0;
-        for (int i = 0; i < currSize; i++){
-            if (tempList[i] < tempValue){
+        for (int i = 0; i < currSize; i++) {
+            if (tempList[i] < tempValue) {
                 amountOfLess++;
             }
         }
@@ -131,10 +131,10 @@ public class TemperatureSeriesAnalysis {
     }
 
     public double[] findTempsLessThen(double tempValue) {
-        double arr[] = new double[amountOflessThen(tempValue)];
+        double[] arr = new double[amountOflessThen(tempValue)];
         int i = 0;
-        for (int j = 0; j < currSize; j++){
-            if (tempList[j] < tempValue){
+        for (int j = 0; j < currSize; j++) {
+            if (tempList[j] < tempValue) {
                   arr[i] = tempList[j];
                   i++;
             }
@@ -143,10 +143,10 @@ public class TemperatureSeriesAnalysis {
     }
 
     public double[] findTempsGreaterThen(double tempValue) {
-        double arr[] = new double[amountOfGreaterThen(tempValue)];
+        double[] arr = new double[amountOfGreaterThen(tempValue)];
         int i = 0;
-        for (int j = 0; j < currSize; j++){
-            if (tempList[j] >= tempValue){
+        for (int j = 0; j < currSize; j++) {
+            if (tempList[j] >= tempValue) {
                 arr[i] = tempList[j];
                 i++;
             }
@@ -161,17 +161,17 @@ public class TemperatureSeriesAnalysis {
 
     public int addTemps(double... temps) {
         checkIfAbsoluteZeroReached(temps);
-        double temp[];
+        double[] temp;
         // Expanding array if necessary
-        while (tempList.length - currSize < temps.length){
+        while (tempList.length - currSize < temps.length) {
             temp = new double[2*tempList.length];
-            for (int i = 0; i < currSize; i++){
+            for (int i = 0; i < currSize; i++) {
                 temp[i] = tempList[i];
             }
             tempList = temp;
         }
         // Adding temps elements
-        for (double t: temps){
+        for (double t: temps) {
             tempList[currSize] = t;
             currSize++;
         }
