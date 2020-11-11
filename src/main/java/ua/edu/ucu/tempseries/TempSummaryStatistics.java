@@ -10,8 +10,8 @@ public final class TempSummaryStatistics {
 
     public TempSummaryStatistics(TemperatureSeriesAnalysis analysis) {
         // For immutability we need to make a copy of analysis, because it can be changed externally
-        double input[] = new double[analysis.getCurrSize()];
-        double tempList[] = analysis.getTempList();
+        double[] input = new double[analysis.getCurrSize()];
+        double[] tempList = analysis.getTempList();
         for (int i = 0; i < analysis.getCurrSize(); i++) {
             input[i] = tempList[i];
         }
@@ -43,6 +43,8 @@ public final class TempSummaryStatistics {
     }
 
     public String toString() {
-        return String.format("Average - %f; Deviation - %f; Min - %f; Max - %f\n", getAvgTemp(), getDevTemp(), getMinTemp(), getMaxTemp());
+        return String.format("Average - %f; " +
+                "Deviation - %f; Min - %f; Max - %f\n",
+                getAvgTemp(), getDevTemp(), getMinTemp(), getMaxTemp());
     }
 }

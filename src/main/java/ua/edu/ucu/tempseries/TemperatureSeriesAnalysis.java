@@ -5,8 +5,8 @@ import java.util.InputMismatchException;
 
 
 public class TemperatureSeriesAnalysis {
-    private final static int ABSOLUTE_ZERO = -273;
-    private final static int DEFAULT_SIZE = 10;
+    private static final int ABSOLUTE_ZERO = -273;
+    private static final int DEFAULT_SIZE = 10;
     private double[] tempList;
     private int currSize = 0;
 
@@ -27,7 +27,7 @@ public class TemperatureSeriesAnalysis {
         }
     }
 
-    private void setDefaultTempList(){
+    private void setDefaultTempList() {
         tempList = new double[DEFAULT_SIZE];
     }
 
@@ -37,27 +37,28 @@ public class TemperatureSeriesAnalysis {
         }
     }
 
-    public void checkIfAbsoluteZeroReached(double[] arr){
+    public void checkIfAbsoluteZeroReached(double[] arr) {
         // Checks if temp is >= -273C
         for (double temp: arr) {
             if (temp < ABSOLUTE_ZERO) {
-                throw new InputMismatchException("Can't be lower than absolute zero");
+                throw new InputMismatchException("Can't" +
+                        " be lower than absolute zero");
             }
         }
     }
 
-    public int getCurrSize(){
+    public int getCurrSize() {
         return currSize;
     }
 
-    public double[] getTempList(){
+    public double[] getTempList() {
         return tempList;
     }
 
     public double average() {
         checkIfEmpty();
         double average = 0;
-        for (int i = 0; i < currSize; i++){
+        for (int i = 0; i < currSize; i++) {
             average += tempList[i];
         }
         return average / currSize;
@@ -67,7 +68,7 @@ public class TemperatureSeriesAnalysis {
         double average = average();
         double standDev = 0;
         for (int i = 0; i < currSize; i++) {
-            standDev += Math.pow(tempList[i] - average, 2);
+            standDev += (tempList[i] - average) * (tempList[i] - average);
         }
         return Math.sqrt(standDev / currSize);
     }
@@ -108,7 +109,8 @@ public class TemperatureSeriesAnalysis {
             if (Math.abs(currDiff) < minDifference) {
                 minDifference = currDiff;
                 closest = temp;
-            } else if (Math.abs(currDiff) == minDifference && currDiff > minDifference) {
+            } else if (Math.abs(currDiff) ==
+                    minDifference && currDiff > minDifference) {
                 minDifference = currDiff;
                 closest = temp;
             }
@@ -126,7 +128,7 @@ public class TemperatureSeriesAnalysis {
         return amountOfLess;
     }
 
-    public int amountOfGreaterThen(double tempValue){
+    public int amountOfGreaterThen(double tempValue) {
         return tempList.length - amountOflessThen(tempValue);
     }
 
