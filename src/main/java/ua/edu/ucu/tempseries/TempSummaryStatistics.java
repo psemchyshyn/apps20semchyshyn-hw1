@@ -2,51 +2,26 @@ package ua.edu.ucu.tempseries;
 
 
 public final class TempSummaryStatistics {
-    private TemperatureSeriesAnalysis results;
-    private double avgTemp;
-    private double devTemp;
-    private double maxTemp;
-    private double minTemp;
+    public final double avgTemp;
+    public final double devTemp;
+    public final double maxTemp;
+    public final double minTemp;
+
+    private TempSummaryStatistics() throws Exception{
+        throw new Exception("Disable default constructor");
+    }
 
     public TempSummaryStatistics(TemperatureSeriesAnalysis analysis) {
-        // For immutability we
-        // need to make a copy of analysis,
-        // because it can be changed externally
-        double[] input = new double[analysis.getCurrSize()];
-        double[] tempList = analysis.getTempList();
-        for (int i = 0; i < analysis.getCurrSize(); i++) {
-            input[i] = tempList[i];
-        }
-        results = new TemperatureSeriesAnalysis(input);
-        avgTemp = results.average();
-        devTemp = results.deviation();
-        maxTemp = results.max();
-        minTemp = results.min();
+        avgTemp = analysis.average();
+        devTemp = analysis.deviation();
+        maxTemp = analysis.max();
+        minTemp = analysis.min();
     }
 
-    public double getAvgTemp() {
-        return avgTemp;
-    }
-
-    public double getDevTemp() {
-        return devTemp;
-    }
-
-    public double getMaxTemp() {
-        return maxTemp;
-    }
-
-    public double getMinTemp() {
-        return minTemp;
-    }
-
-    public TemperatureSeriesAnalysis getResults() {
-        return new TemperatureSeriesAnalysis(results.getTempList());
-    }
 
     public String toString() {
         return String.format("Average - %f; "
-                        + "Deviation - %f; Min - %f; Max - %f\n",
-                getAvgTemp(), getDevTemp(), getMinTemp(), getMaxTemp());
+                        + "Deviation - %f; Min - %f; Max - %f%n",
+                avgTemp, devTemp, minTemp, maxTemp);
     }
 }

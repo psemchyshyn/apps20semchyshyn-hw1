@@ -211,10 +211,10 @@ public class TemperatureSeriesAnalysisTest {
         double expMin = 2.0;
         TempSummaryStatistics after = seriesAnalysis.summaryStatistics();
 
-        assertEquals(expAv, after.getAvgTemp(), 0.00001);
-        assertEquals(expDev, after.getDevTemp(), 0.00001);
-        assertEquals(expMax, after.getMaxTemp(), 0.00001);
-        assertEquals(expMin, after.getMinTemp(), 0.00001);
+        assertEquals(expAv, after.avgTemp, 0.00001);
+        assertEquals(expDev, after.devTemp, 0.00001);
+        assertEquals(expMax, after.maxTemp, 0.00001);
+        assertEquals(expMin, after.minTemp, 0.00001);
     }
 
 
@@ -229,10 +229,10 @@ public class TemperatureSeriesAnalysisTest {
         double expMax = 8.0;
         double expMin = -1.0;
         TempSummaryStatistics after = seriesAnalysis.summaryStatistics();
-        assertEquals(expAv, after.getAvgTemp(), 0.00001);
-        assertEquals(expDev, after.getDevTemp(), 0.00001);
-        assertEquals(expMax, after.getMaxTemp(), 0.00001);
-        assertEquals(expMin, after.getMinTemp(), 0.00001);
+        assertEquals(expAv, after.avgTemp, 0.00001);
+        assertEquals(expDev, after.devTemp, 0.00001);
+        assertEquals(expMax, after.maxTemp, 0.00001);
+        assertEquals(expMin, after.minTemp, 0.00001);
     }
 
     @Test
@@ -245,9 +245,9 @@ public class TemperatureSeriesAnalysisTest {
         double expMin = -5.0;
         TempSummaryStatistics after = seriesAnalysis.summaryStatistics();
 
-        assertEquals(expAv, after.getAvgTemp(), 0.00001);
-        assertEquals(expDev, after.getDevTemp(), 0.00001);
-        assertEquals(expMax, after.getMaxTemp(), 0.00001);
-        assertEquals(expMin, after.getMinTemp(), 0.00001);
+        assertEquals(expAv, after.avgTemp, 0.00001);
+        assertEquals(expDev, after.devTemp, 0.00001);
+        assertEquals(expMax, after.maxTemp, 0.00001);
+        assertEquals(expMin, after.minTemp, 0.00001);
     }
 }

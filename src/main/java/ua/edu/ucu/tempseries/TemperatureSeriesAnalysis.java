@@ -47,14 +47,6 @@ public class TemperatureSeriesAnalysis {
         }
     }
 
-    public int getCurrSize() {
-        return currSize;
-    }
-
-    public double[] getTempList() {
-        return tempList;
-    }
-
     public double average() {
         checkIfEmpty();
         double average = 0;
@@ -129,7 +121,7 @@ public class TemperatureSeriesAnalysis {
     }
 
     public int amountOfGreaterThen(double tempValue) {
-        return tempList.length - amountOflessThen(tempValue);
+        return currSize - amountOflessThen(tempValue);
     }
 
     public double[] findTempsLessThen(double tempValue) {
