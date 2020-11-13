@@ -7,7 +7,7 @@ public final class TempSummaryStatistics {
     public final double maxTemp;
     public final double minTemp;
 
-    private TempSummaryStatistics() throws Exception{
+    private TempSummaryStatistics() throws Exception {
         throw new Exception("Disable default constructor");
     }
 
